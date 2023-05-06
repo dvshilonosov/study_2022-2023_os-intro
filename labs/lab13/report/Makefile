@@ -6,6 +6,7 @@ OPTIONS =
 PDF_ENGINE =
 PDF_OPTIONS =
 FORMAT_OPTIONS =
+CSL = pandoc/csl/gost-r-7-0-5-2008-numeric.csl
 
 ### Cross references
 ## Use pandoc-xnos (https://github.com/tomduck/pandoc-xnos)
@@ -22,10 +23,10 @@ BIB_OPTIONS = --citeproc
 
 
 %.docx: %.md
-	-pandoc "$<" $(FILTERS) $(OPTIONS) $(BIB_OPTIONS) -o "$@"
+	-pandoc "$<" $(FILTERS) $(OPTIONS) $(BIB_OPTIONS) -o "$@" --csl=$(CSL) -o "$@"
 
 %.pdf: %.md
-	-pandoc "$<" $(FILTERS) $(PDF_ENGINE) $(PDF_OPTIONS) $(BIB_OPTIONS) $(FORMAT_OPTIONS) $(OPTIONS) -o "$@"
+	-pandoc "$<" $(FILTERS) $(PDF_ENGINE) $(PDF_OPTIONS) $(BIB_OPTIONS) $(FORMAT_OPTIONS) $(OPTIONS) -o "$@" --csl=$(CSL) -o "$@"
 
 all: $(FILES)
 
